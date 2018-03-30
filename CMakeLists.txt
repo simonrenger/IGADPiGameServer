@@ -5,7 +5,7 @@ if(UNIX)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=gnu++11")
 endif()
 
-set(THIRD_PARTY_FOLDER ${CMAKE_SOURCE_DIR}/ThirdParty/)
+set(THIRD_PARTY_FOLDER ${CMAKE_SOURCE_DIR}/Thirdparty/)
 set(ROOT_INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/Include/)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -18,7 +18,9 @@ set(CMAKE_DEBUG_POSTFIX "_d")
 
 include_directories(${ROOT_INCLUDE_FOLDER})
 
-add_definitions(-D_WINSOCKAPI_)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+	add_definitions(-D_WINSOCKAPI_)
+endif()
 
 add_subdirectory(Libraries)
 add_subdirectory(Applications)
